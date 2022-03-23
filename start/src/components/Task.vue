@@ -13,12 +13,8 @@
       <!-- task lists -->
       <div class="taskItems">
         <ul>
-          <li>
-            <button>Learn Vue JS</button>
-            <button><i class="far fa-trash-alt"></i></button>
-          </li>
-          <li>
-            <button>Watch netflix</button>
+          <li v-for="task in tasks" :key="task.id">
+            <button><i class="fas fa-circle"></i> {{ task.title }}</button>
             <button><i class="far fa-trash-alt"></i></button>
           </li>
         </ul>
@@ -26,7 +22,7 @@
       <!-- buttons -->
       <div class="clearBtns">
         <button>Clear completed</button>
-        <button>Clear all</button>
+        <button @click="clearAll">Clear all</button>
       </div>
       <!-- pending task -->
       <div class="pendingTasks">
@@ -39,5 +35,11 @@
 <script>
 export default {
   name: "Task",
+  props:['tasks'],
+  methods: {
+    clearAll() {
+      this.tasks = [];
+    }
+  },
 };
 </script>
