@@ -21,12 +21,12 @@
       </div>
       <!-- buttons -->
       <div class="clearBtns">
-        <button>Clear completed</button>
+        <button @click="clearCompleted">Clear completed</button>
         <button @click="clearAll">Clear all</button>
       </div>
       <!-- pending task -->
       <div class="pendingTasks">
-        <span>Pending Tasks: </span>
+        <span>Pending Tasks: {{incomplete}} </span>
       </div>
     </div>
   </div>
@@ -36,7 +36,21 @@
 export default {
   name: "Task",
   props:['tasks'],
+  computed: {
+    incomplete(){
+      return this.tasks.filter(this.inProgress).length;
+    }
+  },
   methods: {
+    inProgress(task){
+      return !this.isCompleted(task);
+    },
+    isCompleted(task){
+      return task.completed;
+    },
+    clearCompleted(){
+      this.tasks = this.tasks.filter(this.inProgress);
+    },
     clearAll() {
       this.tasks = [];
     }
