@@ -18,6 +18,7 @@
             v-for="(task,index) in tasks" 
             :key="task.id"
             @remove="removeTask(index)"
+            @complete="completeTask(task)"
           ></task-item>
         </ul>
       </div>
@@ -79,6 +80,9 @@ export default {
     },
     removeTask(index){
       this.tasks.splice(index, 1);
+    },
+    completeTask(task){
+      task.completed = !task.completed;
     }
   },
 };
