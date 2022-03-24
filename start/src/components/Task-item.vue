@@ -1,7 +1,7 @@
 <template>
      <li>
         <button><i class="fas fa-circle"></i> {{ task.title }}</button>
-        <button><i class="far fa-trash-alt"></i></button>
+        <button @click="$emit('remove')"><i class="far fa-trash-alt"></i></button>
     </li>
 </template>
 
